@@ -316,12 +316,10 @@ def dashboard(
     interns = session.exec(
         select(Internship).where(Internship.user_id == user.id)
     ).all()
-    # 「選考中」は本選考の in_progress と、インターン選考の applied を合算
-    active_internship_selections = sum(1 for i in interns if i.status == "applied")
-    active = active_selections + active_internship_selections
-
+    # 「本選考中」は本選考 (Selection) で overall_status=in_progress の件数のみ。
+    # インターン選考は別カウント（total_internships）で表示される。
     return DashboardSummary(
-        active_selections=active,
+        active_selections=active_selections,
         offers=offers,
         upcoming_events=upcoming,
         total_companies=int(total_companies or 0),

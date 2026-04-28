@@ -66,7 +66,7 @@ export const SELECTION_STATUS_LABELS: Record<string, string> = {
   offer: "内定",
   accepted: "内定承諾",
   declined: "内定辞退",
-  rejected: "お祈り",
+  rejected: "落選",
   withdrawn: "選考辞退",
 };
 

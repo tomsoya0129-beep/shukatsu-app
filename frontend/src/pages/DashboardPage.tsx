@@ -145,7 +145,7 @@ export default function DashboardPage() {
         <StatLink
           to="/selections"
           icon={Briefcase}
-          label="選考中"
+          label="本選考中"
           value={data?.active_selections ?? 0}
           color="bg-primary-600"
         />
