@@ -1,0 +1,24 @@
+[project]
+name = "shukatsu-backend"
+version = "0.1.0"
+description = "Internship & job-hunting information management backend"
+readme = "README.md"
+authors = [
+    { name = "Devin AI", email = "devin@example.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "apscheduler>=3.11.2",
+    "email-validator>=2.3.0",
+    "fastapi[standard]>=0.136.1",
+    "google-genai>=1.0.0",
+    "httpx>=0.28.1",
+    "passlib[bcrypt]>=1.7.4",
+    "psycopg[binary]>=3.2.0",
+    "pydantic-settings>=2.14.0",
+    "python-dateutil>=2.9.0.post0",
+    "python-jose[cryptography]>=3.5.0",
+    "python-multipart>=0.0.26",
+    "sqlmodel>=0.0.38",
+    "uvicorn[standard]>=0.46.0",
+]

@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local env / secrets
+.env
+.env.local
+.env.*.local
+*.db
+*.db-journal
+test.db
+backend/test.db
+backend/.env
+frontend/.env
+frontend/.env.local
+
+# Build outputs
+frontend/dist/
+frontend/node_modules/
+backend/dist/
+backend/build/
+backend/.venv/
+
+# Devin migration helper / one-off
+migrate_user_data.py
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Misc
+.devin/
+attachments/
