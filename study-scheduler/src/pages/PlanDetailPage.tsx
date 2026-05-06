@@ -66,7 +66,7 @@ export default function PlanDetailPage() {
     while (current <= end || weeks.length === 0) {
       const week: string[] = [];
       for (let d = 0; d < 7; d++) {
-        const dateStr = current.toISOString().split("T")[0];
+        const dateStr = `${current.getFullYear()}-${String(current.getMonth() + 1).padStart(2, '0')}-${String(current.getDate()).padStart(2, '0')}`;
         if (current >= start && current <= end) {
           week.push(dateStr);
         } else {

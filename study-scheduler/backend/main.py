@@ -54,7 +54,7 @@ def create_book(data: BookCreate, db: Session = Depends(get_db)):
         unit = BookUnit(
             book_id=book.id, label=u.label, title=u.title,
             start_page=u.start_page, end_page=u.end_page,
-            sort_order=u.sort_order if u.sort_order else i,
+            sort_order=u.sort_order if u.sort_order is not None else i,
             parent_label=u.parent_label,
         )
         db.add(unit)
@@ -76,7 +76,7 @@ def update_book(book_id: uuid.UUID, data: BookCreate, db: Session = Depends(get_
         unit = BookUnit(
             book_id=book.id, label=u.label, title=u.title,
             start_page=u.start_page, end_page=u.end_page,
-            sort_order=u.sort_order if u.sort_order else i,
+            sort_order=u.sort_order if u.sort_order is not None else i,
             parent_label=u.parent_label,
         )
         db.add(unit)
@@ -347,6 +347,9 @@ def generate_plan(plan_id: uuid.UUID, db: Session = Depends(get_db)):
 
             units_studied += 1
 
+            if unit_idx >= len(units) and subj.on_completion != "repeat":
+                break
+
     # Add day events as entries
     for d, events in day_events_map.items():
         for ev_content in events:
@@ -377,7 +380,7 @@ if STATIC_DIR.exists():
 
     @app.get("/{full_path:path}")
     async def serve_frontend(full_path: str):
-        file_path = STATIC_DIR / full_path
-        if file_path.exists() and file_path.is_file():
+        file_path = (STATIC_DIR / full_path).resolve()
+        if file_path.is_relative_to(STATIC_DIR) and file_path.exists() and file_path.is_file():
             return FileResponse(str(file_path))
         return FileResponse(str(STATIC_DIR / "index.html"))
